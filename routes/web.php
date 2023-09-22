@@ -1,5 +1,7 @@
 <?php
 
+use App\Http\Controllers\QuizApp\CommonController;
+use App\Http\Controllers\QuizApp\QuestionAnswerController;
 use Illuminate\Support\Facades\Route;
 
 /*
@@ -16,3 +18,12 @@ use Illuminate\Support\Facades\Route;
 Route::get('/', function () {
     return view('welcome');
 });
+
+Route::get('/logs', [CommonController::class, 'viewLogs']);
+
+// -------------------------------- Question Crud --------------------------------
+
+Route::get('/show-question-answer', [QuestionAnswerController::class, 'showQuestionAnswer'])->name('show.question.answer');
+Route::get('/create-question-answer', [QuestionAnswerController::class, 'createQuestionAnswer'])->name('create.question.answer');
+Route::post('/store-question-answer', [QuestionAnswerController::class, 'storeQuestionAnswer'])->name('store.question.answer');
+

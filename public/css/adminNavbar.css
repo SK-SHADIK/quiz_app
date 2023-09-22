@@ -1,0 +1,48 @@
+* {
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+    text-decoration: none;
+}
+/* ------------------------------- Nav Bar ------------------------------- */
+
+.navbar {
+    background: lightgreen;
+    color: #000;
+    display: flex;
+    justify-content: space-around;
+    align-items: center;
+    padding: 10px 20px;
+}
+
+.logo {
+    font-size: 24px;
+    font-weight: 900;
+}
+
+.nav-list {
+    list-style: none;
+    display: flex;
+    gap: 20px;
+}
+
+.nav-list li {
+    font-size: 18px;
+}
+
+.nav-list a {
+    text-decoration: none;
+    color: #000;
+    transition: color 0.3s;
+    padding: 5px;
+    font-weight: 700;
+}
+
+.nav-list a:hover {
+    background: #fff;
+    border-radius: 5px;
+}
+
+.nav-list a img {
+    width: 20px;
+}

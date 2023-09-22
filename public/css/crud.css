@@ -1,0 +1,422 @@
+* {
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+    text-decoration: none;
+}
+
+/* ------------------------------- CRUD Part ------------------------------- */
+
+.crud-section {
+    margin: 30px;
+}
+
+.crud-header {
+    text-align: center;
+    font-size: 30px;
+    font-weight: 900;
+    color: #000;
+}
+
+.crud-top {
+    margin-top: 30px;
+    display: flex;
+    justify-content: space-around;
+    align-items: center;
+}
+
+.crud-search {
+    display: flex;
+}
+
+.crud-search-input {
+    width: 300px;
+    font-size: 14px;
+    padding: 3px;
+    border: 2px solid #000;
+    border-top-left-radius: 5px;
+    border-bottom-left-radius: 5px;
+    letter-spacing: 0.5px;
+    color: #000;
+}
+
+.crud-search-button {
+    font-size: 14px;
+    font-weight: 700;
+    padding: 3px;
+    color: #000;
+    background: #ffa07a;
+    border: 2px solid #ffa07a;
+    border-top-right-radius: 5px;
+    border-bottom-right-radius: 5px;
+    cursor: pointer;
+    transition: background 0.3s, transform 0.3s;
+}
+
+.crud-search-button:hover {
+    background: #fff;
+}
+
+.crud-create-button {
+    font-size: 14px;
+    font-weight: 700;
+    color: #ffa07a;
+    background: #fff;
+    border: 2px solid #ffa07a;
+    border-radius: 8px;
+    padding: 3px;
+    transition: background 0.3s, transform 0.3s;
+}
+
+.crud-create-button:hover {
+    color: #000;
+    background: #ffa07a;
+}
+
+.crud-table-section {
+    margin-top: 30px;
+    overflow-x: auto;
+}
+
+.crud-table {
+    border-collapse: collapse;
+    width: 100%;
+}
+
+.crud-table-header,
+.crud-table-row {
+    text-align: center;
+    padding: 5px;
+    border: 2px solid #00000092;
+    color: #000;
+}
+
+.crud-table-headers {
+    font-size: 18px;
+    font-weight: 700;
+    background: #87cefa;
+}
+
+.crud-table-headers:hover {
+    background: #87cefac1;
+}
+
+.crud-table-row {
+    font-size: 16px;
+    white-space: nowrap;
+}
+
+.crud-table-body:nth-child(even) {
+    background-color: #0b0b0b43;
+}
+
+.crud-table-body:hover,
+.crud-table-body:nth-child(even):hover {
+    background: #0b0b0b73;
+}
+
+.crud-view-button,
+.crud-delete-button {
+    font-size: 14px;
+    font-weight: 700;
+    color: #ffa07a;
+    background: #fff;
+    border: 2px solid #ffa07a;
+    border-radius: 8px;
+    padding: 3px;
+    transition: background 0.3s, transform 0.3s;
+    margin: 5px;
+}
+
+.crud-view-button:hover,
+.crud-delete-button:hover {
+    color: #000;
+    background: #ffa07a;
+}
+
+.crud-edit-button {
+    font-size: 14px;
+    font-weight: 700;
+    color: #000;
+    background: #ffa07a;
+    border-radius: 5px;
+    padding: 3px;
+    transition: background 0.3s, transform 0.3s;
+    margin: 5px;
+}
+.crud-edit-button:hover {
+    color: #ffa07a;
+    background: #fff;
+    border: 2px solid #ffa07a;
+}
+/* ------------------------------- Toggle Button ------------------------------- */
+
+.switch {
+    position: relative;
+    display: inline-block;
+    width: 60px;
+    height: 30px;
+}
+
+.switch input {
+    display: none;
+}
+
+.slider {
+    position: absolute;
+    cursor: pointer;
+    top: 0;
+    left: 0;
+    right: 0;
+    bottom: 0;
+    background-color: #ccc;
+    -webkit-transition: .4s;
+    transition: .4s;
+    border-radius: 20px;
+}
+
+.slider:before {
+    position: absolute;
+    content: "";
+    height: 23px;
+    width: 23px;
+    left: 4px;
+    bottom: 4px;
+    border-radius: 50%;
+    background-color: white;
+    -webkit-transition: .4s;
+    transition: .4s;
+}
+
+input:checked+.slider {
+    background-color: #2196F3;
+}
+
+input:focus+.slider {
+    box-shadow: 0 0 1px #2196F3;
+}
+
+input:checked+.slider:before {
+    -webkit-transform: translateX(26px);
+    -ms-transform: translateX(26px);
+    transform: translateX(26px);
+}
+
+
+/* ------------------------------- Delete Confirmation Popup ------------------------------- */
+.delete-confirmation-popup {
+    display: none;
+    position: fixed;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    background-color: #00000080;
+    justify-content: center;
+    align-items: center;
+    z-index: 9999;
+}
+
+.popup-content {
+    background-color: #fff;
+    border-radius: 10px;
+    padding: 40px;
+    text-align: center;
+}
+
+.popup-text {
+    font-size: 16px;
+}
+
+.confirm-delete-button,
+.cancel-delete-button {
+    padding: 10px 20px;
+    margin: 10px;
+    border: none;
+    cursor: pointer;
+    font-size: 16px;
+    font-weight: bold;
+    border-radius: 4px;
+}
+
+.confirm-delete-button {
+    background: #f44336;
+    color: #fff;
+    transition: background 0.3s, transform 0.3s;
+}
+
+.confirm-delete-button:hover {
+    background: #f44336c0;
+}
+
+.cancel-delete-button {
+    background: #ccc;
+    color: #000;
+    transition: background 0.3s, transform 0.3s;
+}
+
+.cancel-delete-button:hover {
+    background: #ccccccc1;
+}
+
+/* ------------------------------- Create Page ------------------------------- */
+.crud-create-section {
+    margin: 30px;
+}
+
+.crud-back-button {
+    display: inline-block;
+    color: #ffa07a;
+    background: #fff;
+    border: 2px solid #ffa07a;
+    padding: 5px;
+    text-decoration: none;
+    border-radius: 5px;
+    font-size: 16px;
+    font-weight: 700;
+    transition: background 0.3s, transform 0.3s;
+}
+
+.crud-back-button:hover {
+    background: #ffa07a;
+    color: #000;
+}
+
+.create-crud-title {
+    margin-top: 30px;
+    font-size: 24px;
+    font-weight: 900;
+    color: #000;
+    text-align: center;
+}
+
+.create-form {
+    margin-top: 30px;
+}
+
+.create-form-label {
+    display: block;
+    margin-bottom: 5px;
+    font-size: 18px;
+    font-weight: 800;
+}
+
+.create-form-input {
+    width: 100%;
+    padding: 10px;
+    margin-bottom: 10px;
+    border: 2px solid #ccc;
+    border-radius: 10px;
+    font-size: 14px;
+    letter-spacing: 0.5px;
+}
+.create-form-button{
+    display: block;
+    margin-top: 10px;
+    margin-bottom: 30px;
+    font-size: 16px;
+    font-weight: 700;
+    color: #000;
+    background: #ffa07a;
+    border: 2px solid #ffa07a;
+    border-radius: 10px;
+    padding: 10px;
+    cursor: pointer;
+    transition: background 0.3s, transform 0.3s;
+}
+.create-form-button:hover{
+    background: #fff;
+    color: #ffa07a;
+    border-radius: 5px;
+}
+
+/* ------------------------------- Success Message ------------------------------- */
+.success-message {
+    background-color: #4CAF50;
+    color: white;
+    padding: 10px;
+    border-radius: 5px;
+    display: inline-block;
+    margin: 10px 0;
+}
+
+.success-icon::before {
+    content: "\2713";
+    font-size: 1.2em;
+    margin-right: 5px; 
+}
+
+/* ------------------------------- Error Message ------------------------------- */
+.error-message {
+    background-color: #f44336;
+    color: white;
+    padding: 10px;
+    border-radius: 5px;
+    display: inline-block; 
+    margin: 10px 0; 
+}
+
+.error-icon::before {
+    content: "\2716"; 
+    font-size: 1.2em; 
+    margin-right: 5px;
+}
+.error {
+    color: #ff0000;
+    font-size: 14px;
+    margin-top: 5px;
+}
+
+/* ------------------------------- Pagination ------------------------------- */
+.custom-pagination {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    margin-top: 20px;
+}
+
+.pagination-button {
+    background: #90ee90;
+    color: #000;
+    text-decoration: none;
+    padding: 5px 10px;
+    margin: 0 5px;
+    border-radius: 5px;
+    font-weight: 700;
+}
+
+.pagination-info {
+    margin: 0 10px;
+}
+
+
+
+/* ------------------------------- Responsive ------------------------------- */
+@media screen and (max-width: 768px) {
+    .nav-list {
+        flex-direction: column;
+        gap: 10px;
+    }
+
+    .nav-list li {
+        font-size: 16px;
+    }
+
+    .crud-top {
+        flex-direction: column;
+    }
+
+    .crud-create-button {
+        margin-top: 20px;
+    }
+}
+
+@media screen and (max-width: 380px) {
+    .crud-search-input {
+        width: 100%;
+    }
+
+    .popup-text {
+        margin-bottom: 20px;
+    }
+}
