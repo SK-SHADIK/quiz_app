@@ -420,3 +420,14 @@ input:checked+.slider:before {
         margin-bottom: 20px;
     }
 }
+
+.active {
+    color: green;
+    font-weight: 700;
+}
+
+.inactive {
+    color: red;
+    font-weight: 700;
+
+}
