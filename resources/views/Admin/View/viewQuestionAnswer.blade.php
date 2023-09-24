@@ -51,6 +51,15 @@
     <p class="{{$questionAnswer['is_active'] ? 'active' : 'inactive'}}">{{$questionAnswer['is_active'] ? 'Active' : 'Inactive'}}</p>
 </label>
 
+<label for="created_by" class="create-form-label">Created By</label>
+                    <input readonly class="create-form-input" name="created_by" id="created_by" value="{{$questionAnswer['created_by']}}">
+<label for="created_date" class="create-form-label">Created Date</label>
+                    <input readonly class="create-form-input" name="created_date" id="created_date" value="{{$questionAnswer['created_date']}}">
+<label for="updated_by" class="create-form-label">Updated By</label>
+                    <input readonly class="create-form-input" name="updated_by" id="updated_by" value="{{$questionAnswer['updated_by']}}">
+<label for="updated_date" class="create-form-label">Updated Date</label>
+                    <input readonly class="create-form-input" name="updated_date" id="updated_date" value="{{$questionAnswer['updated_date']}}">
+
 
 
 

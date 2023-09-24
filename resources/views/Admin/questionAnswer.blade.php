@@ -37,9 +37,12 @@
     <h1 class="crud-header">Question Answer List</h1>
     <div class="crud-top">
         <div class="crud-search">
-            <input type="text" class="crud-search-input" placeholder="Search Here"><button
-                class="crud-search-button">Search</button>
+           <form method="GET" action="{{ route('search.question.answer') }}" class="crud-search-form">
+                <input type="text" name="search" class="crud-search-input" placeholder="Search Here">
+                <button type="submit" class="crud-search-button">Search</button>
+            </form>
         </div>
+
         <a href="{{route('create.question.answer')}}" class="crud-create-button">Create A Question Answer</a>
     </div>
     <div class="crud-table-section">
@@ -71,18 +74,11 @@
                         <td class="crud-table-row">{{$questionAnswer['correct_answer']}}</td>
                         <td class="crud-table-row">{{$questionAnswer['marks']}}</td>
                         <td class="crud-table-row">
-    <label class="switch">
-        <form action="{{ route('active.deactive.question.answer', ['id' => $questionAnswer['id']]) }}" method="POST">
-        @csrf
-        <input type="checkbox" class="toggle-switch" @if($questionAnswer['is_active']) checked @endif  value="{{$questionAnswer['is_active'] ? '1' : '0'}}">
-        <span class="slider round"></span>
-
-</form>
-    </label>
+                        <label class="switch">
+                        <input type="checkbox" class="toggle-switch" name="is_active" id="is_active" value="1"  @if($questionAnswer['is_active']) checked @endif>
+                        <span class="slider round"></span>
+                    </label>
 </td>
-
-
-
                         <td class="crud-table-row" colspan="3"><a href="/view-question-answer/{{$questionAnswer['id']}}" class="crud-view-button">View</a>
                         <a
                                 href="/edit-question-answer/{{$questionAnswer['id']}}" class="crud-edit-button">Edit</a>
@@ -99,24 +95,35 @@
         </table>
     </div>
     <tfoot>
-        <div class="custom-pagination">
-            @if ($questionAnswers->previousPageUrl())
-                <a href="{{ $questionAnswers->previousPageUrl() }}" class="pagination-button">Previous</a>
-            @endif
+    <div class="custom-pagination">
+    @if ($questionAnswers->previousPageUrl())
+        <a href="{{ $questionAnswers->previousPageUrl() }}" class="pagination-button">Previous</a>
+    @endif
 
-            <span class="pagination-info">Page {{ $questionAnswers->currentPage() }} of {{ $questionAnswers->lastPage() }}</span>
+    <span class="pagination-info">Page {{ $questionAnswers->currentPage() }} of {{ $questionAnswers->lastPage() }}</span>
 
-            @if ($questionAnswers->nextPageUrl())
-                <a href="{{ $questionAnswers->nextPageUrl() }}" class="pagination-button">Next</a>
+    <div class="pagination-pages">
+        @for ($i = 1; $i <= $questionAnswers->lastPage(); $i++)
+            @if ($i == $questionAnswers->currentPage())
+                <span class="current-page">{{ $i }}</span>
+            @else
+                <a href="{{ $questionAnswers->url($i) }}">{{ $i }}</a>
             @endif
-        </div>
-    </tfoot>
+        @endfor
+    </div>
+
+    @if ($questionAnswers->nextPageUrl())
+        <a href="{{ $questionAnswers->nextPageUrl() }}" class="pagination-button">Next</a>
+    @endif
+</div>
+
+</tfoot>
+
 </section>
 </body>
 </html>
 
 <script>
-    let toggleSwitches = document.querySelectorAll('.toggle-switch');
     let deleteButtons = document.querySelectorAll('.crud-delete-button');
     let deleteConfirmationPopup = document.getElementById('deleteConfirmationPopup');
     let confirmDeleteButton = document.getElementById('confirmDeleteButton');
@@ -154,12 +161,6 @@
         // Close the confirmation popup
         deleteConfirmationPopup.style.display = 'none';
     });
-
-    // Initialize toggle switches
-    document.querySelectorAll('.toggle-switch').forEach(function(switchElement) {
-        switchElement.checked = switchElement.value === '1';
-    });
-
 
 
 </script>
