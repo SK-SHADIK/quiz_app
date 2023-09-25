@@ -13,6 +13,11 @@
         <section class="crud-create-section">
             <a href="{{route('show.question.answer')}}" class="crud-back-button">Back</a>
             <h1 class="create-crud-title">Create A Question Answer</h1>
+            @if(session('success'))
+        <div class="success-message">
+            <span class="success-icon"></span>{{ session('success') }}
+        </div>
+    @endif          
            
 
             <div class="crud-create-form">
@@ -66,6 +71,12 @@
                         <input type="checkbox" class="toggle-switch" name="is_active" id="is_active" checked>
                         <span class="slider round"></span>
                     </label>
+<div class="create-form-continue">
+<input type="checkbox" name="continue_creating" id="continue_creating" class="create-form-checkbox">
+<span class="create-form-span">Continue Creating</span>
+</div>
+
+                    
 
                     <button class="create-form-button">Create</button>
                 </form>

@@ -86,9 +86,15 @@ class QuestionAnswerController extends Controller
             $questionAnswer->is_active = $request->has('is_active') ? true : false;
             $questionAnswer->save();
 
-            Log::info('Successfully Data Added.');
+            $continueCreating = $request->has('continue_creating') ? 1 : 0;
 
-            return redirect()->route('show.question.answer')->with('success', 'Question answer has been added successfully');
+            if ($continueCreating == 1) {
+                Log::info('Successfully Data Added.');
+                return redirect()->route('create.question.answer')->with('success', 'Question Answer created successfully.');
+            } else {
+                Log::info('Successfully Data Added.');
+                return redirect()->route('show.question.answer')->with('success', 'Question Answer created successfully.');
+            }
 
         } catch (QueryException $ex) {
             Log::error(__FILE__ . ' || Line ' . __LINE__ . ' || ' . $ex->getMessage() . ' || ' . $ex->getCode());
@@ -241,7 +247,7 @@ class QuestionAnswerController extends Controller
     //         return back()->with('error', 'An Unexpected Error Occurred!!! Please Try Again.');
     //     }
     // }
-    
+
 
     //-------------------------- Search Questions Answer --------------------------
     public function searchQuestionAnswer(Request $request)

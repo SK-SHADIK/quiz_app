@@ -330,6 +330,20 @@ input:checked+.slider:before {
     color: #ffa07a;
     border-radius: 5px;
 }
+.create-form-continue{
+    display: block;
+    margin-top: 20px;
+    margin-bottom: 20px;
+}
+.create-form-checkbox{
+    accent-color: #ffa07a;
+    font-size: 18px;
+}
+.create-form-span{
+    font-size: 18px;
+    font-weight: 700;
+    color: #000;
+}
 
 /* ------------------------------- Success Message ------------------------------- */
 .success-message {
