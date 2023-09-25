@@ -49,14 +49,19 @@
         <table class="crud-table">
             <thead>
             <tr class="crud-table-headers">
-                <th class="crud-table-header">Id</th>
+            <th class="crud-table-header" id="id-header">
+    Id <button id="sort-id-button" class="sort-button"><img class="sorting-icon" src="{{ asset('img/sorting.png') }}" alt="">
+</button>
+</th>
                 <th class="crud-table-header">Question</th>
                 <th class="crud-table-header">Option A</th>
                 <th class="crud-table-header">Option B</th>
                 <th class="crud-table-header">Option C</th>
                 <th class="crud-table-header">Option D</th>
                 <th class="crud-table-header">Correct Answer</th>
-                <th class="crud-table-header">Marks</th>
+                <th class="crud-table-header" id="marks-header">
+    Marks <button id="sort-marks-button" class="sort-button"><img class="sorting-icon" src="{{ asset('img/sorting.png') }}" alt=""></button>
+</th>
                 <th class="crud-table-header">Is Active</th>
                 <th class="crud-table-header" colspan="3">Action</th>
             </tr>
@@ -161,6 +166,67 @@
         // Close the confirmation popup
         deleteConfirmationPopup.style.display = 'none';
     });
+
+
+
+    
+// JavaScript to handle sorting by the "Marks" column
+let marksHeader = document.getElementById('marks-header');
+let sortMarksButton = document.getElementById('sort-marks-button');
+let ascendingOrderForMarks = true; // Initial sorting order is ascending
+
+sortMarksButton.addEventListener('click', () => {
+    // Get all the rows from the table body
+    let tableBody = document.querySelector('.crud-table tbody');
+    let rows = Array.from(tableBody.querySelectorAll('tr'));
+
+    // Sort the rows based on the content of the "Marks" column
+    rows.sort((a, b) => {
+        let marksA = parseInt(a.querySelector('.crud-table-row:nth-child(8)').textContent);
+        let marksB = parseInt(b.querySelector('.crud-table-row:nth-child(8)').textContent);
+
+        if (ascendingOrderForMarks) {
+            return marksA - marksB;
+        } else {
+            return marksB - marksA;
+        }
+    });
+
+    // Reverse the sorting order for the next click
+    ascendingOrderForMarks = !ascendingOrderForMarks;
+
+    // Reorder the table rows
+    rows.forEach(row => tableBody.appendChild(row));
+});
+
+// JavaScript to handle sorting by the "Id" column
+let idHeader = document.getElementById('id-header');
+let sortIdButton = document.getElementById('sort-id-button');
+let ascendingOrderForId = true; // Initial sorting order is ascending
+
+sortIdButton.addEventListener('click', () => {
+    // Get all the rows from the table body
+    let tableBody = document.querySelector('.crud-table tbody');
+    let rows = Array.from(tableBody.querySelectorAll('tr'));
+
+    // Sort the rows based on the content of the "Id" column
+    rows.sort((a, b) => {
+        let idA = parseInt(a.querySelector('.crud-table-row:first-child').textContent);
+        let idB = parseInt(b.querySelector('.crud-table-row:first-child').textContent);
+
+        if (ascendingOrderForId) {
+            return idA - idB;
+        } else {
+            return idB - idA;
+        }
+    });
+
+    // Reverse the sorting order for the next click
+    ascendingOrderForId = !ascendingOrderForId;
+
+    // Reorder the table rows
+    rows.forEach(row => tableBody.appendChild(row));
+});
 
 
 </script>

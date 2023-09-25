@@ -345,6 +345,12 @@ input:checked+.slider:before {
     color: #000;
 }
 
+/* ------------------------------- Sorting Icon ------------------------------- */
+.sorting-icon{
+    width: 20px;
+    height: 20px;
+}
+
 /* ------------------------------- Success Message ------------------------------- */
 .success-message {
     background-color: #4CAF50;
