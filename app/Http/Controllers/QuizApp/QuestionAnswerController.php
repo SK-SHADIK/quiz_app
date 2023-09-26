@@ -225,30 +225,6 @@ class QuestionAnswerController extends Controller
         }
     }
 
-    //-------------------------- Active Deactive Questions Answer --------------------------
-    // public function activeDeactiveQuestionAnswer($id, Request $request)
-    // {
-    //     try {
-    //         $questionAnswer = QuestionAnswer::find($id);
-    //         if (!$questionAnswer) {
-    //             return back()->with('error', 'Question Answer not found');
-    //         }
-
-    //         $questionAnswer->is_active = $request->input('is_active');
-    //         $questionAnswer->save();
-
-    //         Log::info('Question Answer Status Updated Successfully');
-    //         return back()->with('success', 'Question Answer Status Updated Successfully');
-    //     } catch (QueryException $ex) {
-    //         Log::error(__FILE__ . ' || Line ' . __LINE__ . ' || ' . $ex->getMessage() . ' || ' . $ex->getCode());
-    //         return back()->with('error', 'Database Error Occurred!!! Please Try Again.');
-    //     } catch (Exception $ex) {
-    //         Log::error(__FILE__ . ' || Line ' . __LINE__ . ' || ' . $ex->getMessage() . ' || ' . $ex->getCode());
-    //         return back()->with('error', 'An Unexpected Error Occurred!!! Please Try Again.');
-    //     }
-    // }
-
-
     //-------------------------- Search Questions Answer --------------------------
     public function searchQuestionAnswer(Request $request)
     {
@@ -267,6 +243,31 @@ class QuestionAnswerController extends Controller
                 'questionAnswers' => $questionAnswer,
                 'hasData' => $hasData,
             ]);
+        } catch (QueryException $ex) {
+            Log::error(__FILE__ . ' || Line ' . __LINE__ . ' || ' . $ex->getMessage() . ' || ' . $ex->getCode());
+            return back()->with('error', 'Database Error Occurred!!! Please Try Again.');
+        } catch (Exception $ex) {
+            Log::error(__FILE__ . ' || Line ' . __LINE__ . ' || ' . $ex->getMessage() . ' || ' . $ex->getCode());
+            return back()->with('error', 'An Unexpected Error Occurred!!! Please Try Again.');
+        }
+    }
+
+    //-------------------------- Active Deactive Questions Answer --------------------------
+    public function activeDeactiveQuestionAnswer($id)
+    {
+        try {
+            $questionAnswer = QuestionAnswer::findOrFail($id);
+            if (!$questionAnswer) {
+                Log::info('Data Not Found!!!');
+                return redirect()->back()->with('error', 'Data not found.');
+            }
+
+            $questionAnswer->is_active = !$questionAnswer->is_active;
+            $questionAnswer->save();
+
+            Log::info('Question Answer Status Change Successfully');
+            return redirect()->back()->with('success', 'Status updated successfully.');
+            
         } catch (QueryException $ex) {
             Log::error(__FILE__ . ' || Line ' . __LINE__ . ' || ' . $ex->getMessage() . ' || ' . $ex->getCode());
             return back()->with('error', 'Database Error Occurred!!! Please Try Again.');

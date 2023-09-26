@@ -30,9 +30,9 @@ Route::get('/view-question-answer/{id}', [QuestionAnswerController::class, 'view
 Route::get('/edit-question-answer/{id}', [QuestionAnswerController::class, 'editQuestionAnswer'])->name('edit.question.answer');
 Route::post('/update-question-answer', [QuestionAnswerController::class, 'updateQuestionAnswer'])->name('update.question.answer');
 Route::post('/delete-question-answer/{id}', [QuestionAnswerController::class, 'deleteQuestionAnswer'])->name('delete.question.answer');
-// Route::post('/active-deactive-question-answer/{id}', [QuestionAnswerController::class, 'activeDeactiveQuestionAnswer'])->name('active.deactive.question.answer');
-
 Route::get('/search-question-answer', [QuestionAnswerController::class, 'searchQuestionAnswer'])->name('search.question.answer');
+Route::post('/active-deactive-question-answer/{id}', [QuestionAnswerController::class, 'activeDeactiveQuestionAnswer'])->name('active.deactive.question.answer');
+
 
 
 

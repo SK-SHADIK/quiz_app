@@ -78,12 +78,18 @@
                         <td class="crud-table-row">{{$questionAnswer['option_d']}}</td>
                         <td class="crud-table-row">{{$questionAnswer['correct_answer']}}</td>
                         <td class="crud-table-row">{{$questionAnswer['marks']}}</td>
-                        <td class="crud-table-row">
-                        <label class="switch">
-                        <input type="checkbox" class="toggle-switch" name="is_active" id="is_active" value="1"  @if($questionAnswer['is_active']) checked @endif>
-                        <span class="slider round"></span>
-                    </label>
+                        <!-- In your table body -->
+<td class="crud-table-row">
+    <form method="POST" action="{{ route('active.deactive.question.answer', ['id' => $questionAnswer['id']]) }}">
+        @csrf
+        @method('POST')
+        <label class="switch">
+            <input type="checkbox" class="toggle-switch" name="is_active" value="1" @if($questionAnswer['is_active']) checked @endif onchange="this.form.submit()">
+            <span class="slider round"></span>
+        </label>
+    </form>
 </td>
+
                         <td class="crud-table-row" colspan="3"><a href="/view-question-answer/{{$questionAnswer['id']}}" class="crud-view-button">View</a>
                         <a
                                 href="/edit-question-answer/{{$questionAnswer['id']}}" class="crud-edit-button">Edit</a>
