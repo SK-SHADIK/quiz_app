@@ -91,7 +91,9 @@
     border: 2px solid #00000092;
     color: #000;
 }
-
+.crud-table-header a {
+    color: #000;
+}
 .crud-table-headers {
     font-size: 18px;
     font-weight: 700;

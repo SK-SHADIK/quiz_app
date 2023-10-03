@@ -267,7 +267,7 @@ class QuestionAnswerController extends Controller
 
             Log::info('Question Answer Status Change Successfully');
             return redirect()->back()->with('success', 'Status updated successfully.');
-            
+
         } catch (QueryException $ex) {
             Log::error(__FILE__ . ' || Line ' . __LINE__ . ' || ' . $ex->getMessage() . ' || ' . $ex->getCode());
             return back()->with('error', 'Database Error Occurred!!! Please Try Again.');
@@ -277,5 +277,84 @@ class QuestionAnswerController extends Controller
         }
     }
 
+    //-------------------------- Sort Questions Answer --------------------------
+    public function sortId(Request $request)
+    {
+        try {
+            $query = QuestionAnswer::query();
+
+            $currentSortColumn = $request->session()->get('sort_column', 'id');
+            $currentSortOrder = $request->session()->get('sort_order', 'asc');
+
+            $sortColumn = $request->input('sort_column', 'id');
+
+            if ($sortColumn === $currentSortColumn) {
+                $sortOrder = ($currentSortOrder === 'asc') ? 'desc' : 'asc';
+            } else {
+                $sortOrder = 'asc';
+            }
+
+            $request->session()->put('sort_column', $sortColumn);
+            $request->session()->put('sort_order', $sortOrder);
+
+            $query->orderBy($sortColumn, $sortOrder);
+
+            $perPage = $request->input('per_page', 20);
+            $questionAnswers = $query->paginate($perPage);
+
+            $hasData = !$questionAnswers->isEmpty();
+
+            Log::info('Question Answer Sorting With Id Successfully');
+            return view('Admin/questionAnswer')->with([
+                'questionAnswers' => $questionAnswers,
+                'hasData' => $hasData,
+            ]);
+        } catch (QueryException $ex) {
+            Log::error(__FILE__ . ' || Line ' . __LINE__ . ' || ' . $ex->getMessage() . ' || ' . $ex->getCode());
+            return back()->with('error', 'Database Error Occurred!!! Please Try Again.');
+        } catch (Exception $ex) {
+            Log::error(__FILE__ . ' || Line ' . __LINE__ . ' || ' . $ex->getMessage() . ' || ' . $ex->getCode());
+            return back()->with('error', 'An Unexpected Error Occurred!!! Please Try Again.');
+        }
+    }
+    public function sortMarks(Request $request)
+    {
+        try {
+            $query = QuestionAnswer::query();
+
+            $currentSortColumn = $request->session()->get('sort_column', 'marks');
+            $currentSortOrder = $request->session()->get('sort_order', 'asc');
+
+            $sortColumn = $request->input('sort_column', 'marks');
+
+            if ($sortColumn === $currentSortColumn) {
+                $sortOrder = ($currentSortOrder === 'asc') ? 'desc' : 'asc';
+            } else {
+                $sortOrder = 'asc';
+            }
+
+            $request->session()->put('sort_column', $sortColumn);
+            $request->session()->put('sort_order', $sortOrder);
+
+            $query->orderBy($sortColumn, $sortOrder);
+
+            $perPage = $request->input('per_page', 20);
+            $questionAnswers = $query->paginate($perPage);
+
+            $hasData = !$questionAnswers->isEmpty();
+
+            Log::info('Question Answer Sorting With Marks Successfully');
+            return view('Admin/questionAnswer')->with([
+                'questionAnswers' => $questionAnswers,
+                'hasData' => $hasData,
+            ]);
+        } catch (QueryException $ex) {
+            Log::error(__FILE__ . ' || Line ' . __LINE__ . ' || ' . $ex->getMessage() . ' || ' . $ex->getCode());
+            return back()->with('error', 'Database Error Occurred!!! Please Try Again.');
+        } catch (Exception $ex) {
+            Log::error(__FILE__ . ' || Line ' . __LINE__ . ' || ' . $ex->getMessage() . ' || ' . $ex->getCode());
+            return back()->with('error', 'An Unexpected Error Occurred!!! Please Try Again.');
+        }
+    }
 
 }

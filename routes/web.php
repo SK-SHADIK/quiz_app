@@ -32,9 +32,5 @@ Route::post('/update-question-answer', [QuestionAnswerController::class, 'update
 Route::post('/delete-question-answer/{id}', [QuestionAnswerController::class, 'deleteQuestionAnswer'])->name('delete.question.answer');
 Route::get('/search-question-answer', [QuestionAnswerController::class, 'searchQuestionAnswer'])->name('search.question.answer');
 Route::post('/active-deactive-question-answer/{id}', [QuestionAnswerController::class, 'activeDeactiveQuestionAnswer'])->name('active.deactive.question.answer');
-
-
-
-
-
-
+Route::get('/sort-id-question-answers', [QuestionAnswerController::class, 'sortId'])->name('sort.id.question.answers');
+Route::get('/sort-marks-question-answers', [QuestionAnswerController::class, 'sortMarks'])->name('sort.marks.question.answers');
