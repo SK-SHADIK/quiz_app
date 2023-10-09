@@ -22,8 +22,8 @@ Route::get('/', function () {
 Route::get('/logs', [CommonController::class, 'viewLogs']);
 
 // -------------------------------- Question Crud --------------------------------
-
-Route::get('/show-question-answer', [QuestionAnswerController::class, 'showQuestionAnswer'])->name('show.question.answer');
+$router->group(['prefix' => 'quiz-app/admin'], function ($router) {
+Route::get('/question-answer', [QuestionAnswerController::class, 'questionAnswer'])->name('question.answer');
 Route::get('/create-question-answer', [QuestionAnswerController::class, 'createQuestionAnswer'])->name('create.question.answer');
 Route::post('/store-question-answer', [QuestionAnswerController::class, 'storeQuestionAnswer'])->name('store.question.answer');
 Route::get('/view-question-answer/{id}', [QuestionAnswerController::class, 'viewQuestionAnswer'])->name('view.question.answer');
@@ -34,3 +34,4 @@ Route::get('/search-question-answer', [QuestionAnswerController::class, 'searchQ
 Route::post('/active-deactive-question-answer/{id}', [QuestionAnswerController::class, 'activeDeactiveQuestionAnswer'])->name('active.deactive.question.answer');
 Route::get('/sort-id-question-answers', [QuestionAnswerController::class, 'sortId'])->name('sort.id.question.answers');
 Route::get('/sort-marks-question-answers', [QuestionAnswerController::class, 'sortMarks'])->name('sort.marks.question.answers');
+});

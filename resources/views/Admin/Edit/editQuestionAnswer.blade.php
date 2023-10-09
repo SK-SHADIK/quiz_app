@@ -11,7 +11,7 @@
     <body>
         @include('Admin.Layouts.navbar')
         <section class="crud-create-section">
-            <a href="{{route('show.question.answer')}}" class="crud-back-button">Back</a>
+            <a href="{{route('question.answer')}}" class="crud-back-button">Back</a>
             <h1 class="create-crud-title">Edit A Question Answer</h1>
            
 

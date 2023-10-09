@@ -13,7 +13,7 @@ use Illuminate\Support\Facades\Validator;
 class QuestionAnswerController extends Controller
 {
     //-------------------------- Show All Questions --------------------------
-    public function showQuestionAnswer()
+    public function questionAnswer()
     {
         try {
             $questionAnswer = QuestionAnswer::orderBy('id', 'desc')->paginate(20);
@@ -93,7 +93,7 @@ class QuestionAnswerController extends Controller
                 return redirect()->route('create.question.answer')->with('success', 'Question Answer created successfully.');
             } else {
                 Log::info('Successfully Data Added.');
-                return redirect()->route('show.question.answer')->with('success', 'Question Answer created successfully.');
+                return redirect()->route('question.answer')->with('success', 'Question Answer created successfully.');
             }
 
         } catch (QueryException $ex) {
@@ -191,7 +191,7 @@ class QuestionAnswerController extends Controller
 
             Log::info('Successfully Data updated.');
 
-            return redirect()->route('show.question.answer')->with('success', 'Question answer has been updated successfully');
+            return redirect()->route('question.answer')->with('success', 'Question answer has been updated successfully');
 
         } catch (QueryException $ex) {
             Log::error(__FILE__ . ' || Line ' . __LINE__ . ' || ' . $ex->getMessage() . ' || ' . $ex->getCode());
@@ -211,11 +211,11 @@ class QuestionAnswerController extends Controller
             $questionAnswer->delete();
 
             if ($questionAnswer === 0) {
-                return redirect()->route('show.question.answer')->with('error', 'Data Not Found!!!');
+                return redirect()->route('question.answer')->with('error', 'Data Not Found!!!');
             }
 
             Log::info('Successfully Data Deleted.');
-            return redirect()->route('show.question.answer')->with('success', 'Question answer has been deleted successfully');
+            return redirect()->route('question.answer')->with('success', 'Question answer has been deleted successfully');
         } catch (QueryException $ex) {
             Log::error(__FILE__ . ' || Line ' . __LINE__ . ' || ' . $ex->getMessage() . ' || ' . $ex->getCode());
             return redirect()->back()->with('error', 'Database Error Occurred!!! Please Try Again.');

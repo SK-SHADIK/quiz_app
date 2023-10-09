@@ -88,9 +88,9 @@
     </form>
 </td>
 
-                        <td class="crud-table-row" colspan="3"><a href="/view-question-answer/{{$questionAnswer['id']}}" class="crud-view-button">View</a>
+                        <td class="crud-table-row" colspan="3"><a href="/quiz-app/admin/view-question-answer/{{$questionAnswer['id']}}" class="crud-view-button">View</a>
                         <a
-                                href="/edit-question-answer/{{$questionAnswer['id']}}" class="crud-edit-button">Edit</a>
+                                href="/quiz-app/admin/edit-question-answer/{{$questionAnswer['id']}}" class="crud-edit-button">Edit</a>
                                 <a href="#" class="crud-delete-button" data-question-id="{{$questionAnswer['id']}}">Delete</a>
 
                 @endforeach
@@ -149,7 +149,7 @@
 
             // Set the action URL of the delete form dynamically
             let deleteForm = document.getElementById('deleteForm');
-            deleteForm.action = `/delete-question-answer/${questionId}`;
+            deleteForm.action = `/quiz-app/admin/delete-question-answer/${questionId}`;
 
             // Show the confirmation popup
             deleteConfirmationPopup.style.display = 'flex';
