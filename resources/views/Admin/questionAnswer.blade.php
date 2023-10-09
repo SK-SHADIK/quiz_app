@@ -77,7 +77,6 @@
                         <td class="crud-table-row">{{$questionAnswer['option_d']}}</td>
                         <td class="crud-table-row">{{$questionAnswer['correct_answer']}}</td>
                         <td class="crud-table-row">{{$questionAnswer['marks']}}</td>
-                        <!-- In your table body -->
 <td class="crud-table-row">
     <form method="POST" action="{{ route('active.deactive.question.answer', ['id' => $questionAnswer['id']]) }}">
         @csrf
@@ -171,9 +170,5 @@
         // Close the confirmation popup
         deleteConfirmationPopup.style.display = 'none';
     });
-
-
-
-
 
 </script>
